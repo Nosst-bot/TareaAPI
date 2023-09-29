@@ -27,13 +27,20 @@ public class TareaServiceImpl implements TareaService{
 
     @Override
     public ResponseEntity<?> guardarTarea(Tarea tarea) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(tarea.getUsuario().getUsuarioId());
-        if (usuarioOptional.isPresent()) {
-            tarea.setUsuario(usuarioOptional.get());
+        if (tarea.getUsuario() == null) {
+            // Si el campo 'usuario' es null, establece el campo 'usuario' de la tarea como null
+            tarea.setUsuario(null);
             tareaRepository.save(tarea);
             return ResponseEntity.ok(tarea);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe un usuario con ese ID");
+            Optional<Usuario> usuarioOptional = usuarioRepository.findById(tarea.getUsuario().getUsuarioId());
+            if (usuarioOptional.isPresent()) {
+                tarea.setUsuario(usuarioOptional.get());
+                tareaRepository.save(tarea);
+                return ResponseEntity.ok(tarea);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe un usuario con ese ID");
+            }
         }
     }
 
