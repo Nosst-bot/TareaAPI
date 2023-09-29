@@ -2,6 +2,7 @@ package com.tarea.generation.models;
 
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -20,8 +21,9 @@ public class Tarea {
     @Column(name = "descripcion", length = 90)
     private String descripcion;
 
-    @Column(name = "fecha_vencimiento")
-    private Date fechaVencimiento;
+    @Column(name = "mes_vencimiento")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private String fechaVencimiento;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")

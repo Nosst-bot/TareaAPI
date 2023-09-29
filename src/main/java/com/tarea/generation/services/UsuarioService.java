@@ -1,6 +1,7 @@
 package com.tarea.generation.services;
 
 import com.tarea.generation.models.Usuario;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface UsuarioService {
 
     Usuario guardarUsuario(Usuario usuarioNuevo);
 
-    void borrarUsuarioPorId(Long id);
+    ResponseEntity<?> borrarUsuarioPorId(Long id);
 
-    Usuario editarUsuarioPorId(Usuario usuario, Long id);
+    ResponseEntity<?> editarUsuarioPorId(Usuario usuario, Long id);
 }

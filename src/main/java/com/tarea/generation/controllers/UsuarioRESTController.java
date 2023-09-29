@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/usuario")
 public class UsuarioRESTController {
 
     @Autowired
@@ -27,12 +27,11 @@ public class UsuarioRESTController {
 
     @DeleteMapping("/borrar")
     public ResponseEntity<String> borrarUsuarioPorId(@RequestParam Long id){
-        usuarioService.borrarUsuarioPorId(id);
-        return ResponseEntity.ok("Se ha borrado el usuario con id: " +id);
+        return usuarioService.borrarUsuarioPorId(id);
     }
 
     @PutMapping("/editar/{id}")
-    public Usuario editarUsuarioPorId(@PathVariable Long id, @RequestBody Usuario usuario){
+    public ResponseEntity<?> editarUsuarioPorId(@PathVariable Long id, @RequestBody Usuario usuario){
         return usuarioService.editarUsuarioPorId(usuario, id);
     }
 }
