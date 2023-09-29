@@ -43,11 +43,29 @@ Y para los de editar se pasa el ID por el path.<br>
 Por Ejemplo:<br>
 <i>/api/usuario/editar/1</i></p>
 
+<h3>Endpoints:</h3>
+<h4>GET</h4>
+<span>/api/usuario/lista</span><br>
+<span>/api/comentario/lista</span><br>
+<span>/api/tarea/lista</span><br><br>
+<h4>POST</h4>
+<span>/api/usuario/registrar</span><br>
+<span>/api/comentario/registrar</span><br>
+<span>/api/tarea/registrar</span><br><br>
+<h4>PUT</h4>
+<span>/api/usuario/editar/{id}</span><br>
+<span>/api/comentario/editar/{id}</span><br>
+<span>/api/tarea/editar/{id}</span><br><br>
+<h4>DELETE</h4>
+<span>/api/usuario/borrar?id=</span><br>
+<span>/api/comentario/borrar?id=</span><br>
+<span>/api/tarea/borrar?id=</span><br>
 
 
 
 
-<h3 style="color: green">Objetos que ocupé:</h3>
+
+<h2 style="color: green">Objetos que ocupé:</h2>
 <h3>ResponseEntity<?> : </h3>
 <p>Lo ocupé para manejar mejor los errores de los métodos CRUD dentro de <strong>UsuarioServiceImpl, ComentarioServiceImpl, TareaServiceImpl</strong> en los casos en que se ingrese un ID inexistente dentro de la base de datos.</p>
 
