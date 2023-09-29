@@ -1,17 +1,49 @@
 <h1 style="color: green">TareaAPI</h1>
 <h2>Importante: </h2>
 <p>Para ingresar o crear nuevos registros que contengan una llave foranea(id) se debe usar de la siguiente forma: 
-Al crear un comentario, por ejemplo: </p>
+<strong>Para crear un Comentario, por ejemplo:</strong> </p>
 
 ```JSON
 {
-    "texto": "Este es un texto de ejemplo.",
+    "texto": "Este es un comentario de ejemplo.",
     "fechaCreacion": "Septiembre 2023",
-    "tareaId": 1
+    "tarea": 1
     
 }
 ```
-<p>El id de la tarea se ingresa tal cual está en el ejemplo.</p>
+<p>El id de la tarea a asignar(llave foranea) se ingresa tal cual está en el ejemplo.
+De la forma "tarea": {valor}</p><br>
+
+<p><strong>Para crear una Tarea, por ejemplo:</strong></p>
+
+```JSON
+{
+  "titulo": "Bug",
+  "descripcion": "Arreglar el bug del boton en index.html",
+  "fechaVencimiento": "Septiembre 2023",
+  "usuario":1
+}
+```
+<p>El id del comentario a asignar(llave foranea) se ingresa tal cual está en el ejemplo.
+De la forma "comentario": {valor}</p><br>
+
+<p><strong>Para crear un Usuario:</strong> </p>
+
+```JSON
+{
+  "nombreUsuario": "Johnny",
+  "email": "johnny@mail.com"
+}
+```
+
+<h2>Notas:</h2>
+<p>Para el endpoint de borrar(en todos los controllers) se ingresa con parametros.<br>
+Por Ejemplo:<br><i>/api/usuario/borrar?id=7</i><br><br>
+Y para los de editar se pasa el ID por el path.<br>
+Por Ejemplo:<br>
+<i>/api/usuario/editar/1</i></p>
+
+
 
 
 

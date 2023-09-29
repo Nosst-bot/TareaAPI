@@ -30,7 +30,7 @@ public class ComentarioServiceImpl implements ComentarioService{
 
     @Override
     public ResponseEntity<?> guardarComentario(Comentario comentario) {
-        Optional<Tarea> tareaOptional = tareaRepository.findById(comentario.getComentarioId());
+        Optional<Tarea> tareaOptional = tareaRepository.findById(comentario.getTarea().getTareaId());
 
         if (tareaOptional.isPresent()) {
             comentario.setTarea(tareaOptional.get());
@@ -44,11 +44,30 @@ public class ComentarioServiceImpl implements ComentarioService{
 
     @Override
     public ResponseEntity<?> borrarComentarioPorId(Long id) {
-        return null;
+        Optional<Comentario> comentarioOptional = comentarioRepository.findById(id);
+        if (comentarioOptional.isPresent()) {
+            comentarioRepository.deleteById(id);
+            return ResponseEntity.ok("Comentario borrado con exito");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Comentario no encontrado. Id: " +id);
+        }
     }
 
     @Override
     public ResponseEntity<?> editarComentarioPorId(Comentario comentario, Long id) {
-        return null;
+        Optional<Comentario> comentarioOptional = comentarioRepository.findById(id);
+        if (comentarioOptional.isPresent()) {
+            Comentario comentarioEditado = comentarioOptional.get();
+
+            comentarioEditado.setTarea(comentario.getTarea());
+            comentarioEditado.setTexto(comentario.getTexto());
+            comentarioEditado.setFechaCreacion(comentario.getFechaCreacion());
+
+            comentarioRepository.save(comentarioEditado);
+
+            return ResponseEntity.ok(comentarioEditado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Comentario no encontrado. Id: " +id);
+        }
     }
 }

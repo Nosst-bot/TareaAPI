@@ -32,17 +32,40 @@ public class TareaServiceImpl implements TareaService{
             tarea.setUsuario(usuarioOptional.get());
             tareaRepository.save(tarea);
             return ResponseEntity.ok(tarea);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe un usuario con ese ID");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe un usuario con ese ID");
     }
 
     @Override
     public ResponseEntity<?> borrarTareaPorId(Long id) {
-        return null;
+        Optional<Tarea> tareaOptional = tareaRepository.findById(id);
+        if (tareaOptional.isPresent()){
+            tareaRepository.deleteById(id);
+            return ResponseEntity.ok("Tarea borrada con exito");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se ha encontrado una tarea con ese Id");
+        }
     }
 
     @Override
     public ResponseEntity<?> editarTareaPorId(Tarea tarea, Long id) {
-        return null;
+        Optional<Tarea> tareaOptional = tareaRepository.findById(id);
+
+        if (tareaOptional.isPresent()) {
+            Tarea tareaEditada = tareaOptional.get();
+
+            tareaEditada.setTitulo(tarea.getTitulo());
+            tareaEditada.setComentarios(tarea.getComentarios());
+            tareaEditada.setDescripcion(tarea.getDescripcion());
+            tareaEditada.setFechaVencimiento(tarea.getFechaVencimiento());
+
+            tareaRepository.save(tareaEditada);
+
+            return ResponseEntity.ok(tareaEditada);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe una tarea con el ID solicitado");
+        }
+
     }
 }

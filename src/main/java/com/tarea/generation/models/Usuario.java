@@ -1,6 +1,7 @@
 package com.tarea.generation.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -28,8 +29,12 @@ public class Usuario {
     @NotNull
     private String email;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Tarea> tareas;
 
 
+    public Usuario(long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 }

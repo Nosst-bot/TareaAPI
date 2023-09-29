@@ -23,5 +23,14 @@ public class TareaRESTController {
     @PostMapping("/registrar")
     public ResponseEntity<?> nuevaTarea(@RequestBody Tarea tarea) { return tareaService.guardarTarea(tarea); }
 
+    @DeleteMapping("/borrar")
+    public ResponseEntity<?> borrarTareaPorId (@RequestParam Long id){
+        return tareaService.borrarTareaPorId(id);
+    }
+
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<?> editarTareaPorId(@PathVariable Long id, @RequestBody Tarea tarea) {
+        return tareaService.editarTareaPorId(tarea, id);
+    }
 
 }

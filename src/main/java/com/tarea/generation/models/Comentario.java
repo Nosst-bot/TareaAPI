@@ -1,5 +1,6 @@
 package com.tarea.generation.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,6 +25,7 @@ public class Comentario {
     @Column(name = "fecha_de_creacion", length = 40)
     private String fechaCreacion;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "tarea_id")
     private Tarea tarea;

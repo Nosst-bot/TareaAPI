@@ -1,6 +1,8 @@
 package com.tarea.generation.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,10 +34,12 @@ public class Tarea {
     @Column(name = "fecha_vencimiento", length = 30)
     private String fechaVencimiento;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "tarea", cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
 
