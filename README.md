@@ -21,7 +21,7 @@ De la forma "tarea": {valor}</p><br>
   "titulo": "Bug",
   "descripcion": "Arreglar el bug del boton en index.html",
   "fechaVencimiento": "Septiembre 2023",
-  "usuario":1
+  "usuario": 1
 }
 ```
 <p>El id del comentario a asignar(llave foranea) se ingresa tal cual está en el ejemplo.
