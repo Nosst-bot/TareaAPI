@@ -30,16 +30,21 @@ public class ComentarioServiceImpl implements ComentarioService{
 
     @Override
     public ResponseEntity<?> guardarComentario(Comentario comentario) {
-        Optional<Tarea> tareaOptional = tareaRepository.findById(comentario.getTarea().getTareaId());
-
-        if (tareaOptional.isPresent()) {
-            comentario.setTarea(tareaOptional.get());
+        if (comentario.getTarea() == null) {
+            // Si el campo 'tarea' es null, establece el campo 'tarea' del comentario como null
+            comentario.setTarea(null);
             comentarioRepository.save(comentario);
             return ResponseEntity.ok(comentario);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe una tarea con el ID: "+comentario.getComentarioId());
+            Optional<Tarea> tareaOptional = tareaRepository.findById(comentario.getTarea().getTareaId());
+            if (tareaOptional.isPresent()) {
+                comentario.setTarea(tareaOptional.get());
+                comentarioRepository.save(comentario);
+                return ResponseEntity.ok(comentario);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe una tarea con el ID: " + comentario.getComentarioId());
+            }
         }
-
     }
 
     @Override
