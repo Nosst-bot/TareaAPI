@@ -2,6 +2,7 @@ package com.tarea.generation.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -20,8 +21,8 @@ public class Comentario {
     @Column(name = "texto")
     private String texto;
 
-    @Column(name = "fecha_de_creacion")
-    private Date fechaCreacion;
+    @Column(name = "fecha_de_creacion", length = 40)
+    private String fechaCreacion;
 
     @ManyToOne
     @JoinColumn(name = "tarea_id")

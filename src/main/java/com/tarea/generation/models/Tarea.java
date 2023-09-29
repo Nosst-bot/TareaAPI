@@ -2,6 +2,10 @@ package com.tarea.generation.models;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -9,6 +13,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "tarea")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Tarea {
 
     @Id
@@ -21,8 +29,7 @@ public class Tarea {
     @Column(name = "descripcion", length = 90)
     private String descripcion;
 
-    @Column(name = "mes_vencimiento")
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @Column(name = "fecha_vencimiento", length = 30)
     private String fechaVencimiento;
 
     @ManyToOne
@@ -32,8 +39,11 @@ public class Tarea {
     @OneToMany(mappedBy = "tarea", cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
 
+    public Tarea(long tareaId) {
+        this.tareaId = tareaId;
+    }
 
-    /*
+/*
     public class DateFormatter {
 
     public static void main(String[] args) {

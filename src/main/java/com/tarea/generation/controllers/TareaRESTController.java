@@ -1,7 +1,7 @@
 package com.tarea.generation.controllers;
 
-import com.tarea.generation.models.Comentario;
-import com.tarea.generation.services.ComentarioServiceImpl;
+import com.tarea.generation.models.Tarea;
+import com.tarea.generation.services.TareaServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +13,15 @@ import java.util.List;
 public class TareaRESTController {
 
     @Autowired
-    ComentarioServiceImpl comentarioService;
+    TareaServiceImpl tareaService;
 
     @GetMapping("/lista")
-    public List<Comentario> hola(){
-        return comentarioService.listarComentario();
+    public List<Tarea> listarTareas(){
+        return tareaService.listarTarea();
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<?> nuevoComentario(@RequestBody Comentario comentario) { return comentarioService.guardarComentario(comentario); }
+    public ResponseEntity<?> nuevaTarea(@RequestBody Tarea tarea) { return tareaService.guardarTarea(tarea); }
 
 
 }
