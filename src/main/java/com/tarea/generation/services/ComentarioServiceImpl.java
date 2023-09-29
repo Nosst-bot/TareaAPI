@@ -42,7 +42,7 @@ public class ComentarioServiceImpl implements ComentarioService{
                 comentarioRepository.save(comentario);
                 return ResponseEntity.ok(comentario);
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe una tarea con el ID: " + comentario.getComentarioId());
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No existe una tarea con el ID: " + comentario.getTarea().getTareaId());
             }
         }
     }
